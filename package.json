@@ -1,0 +1,15 @@
+{
+  "name": "damirshop",
+  "version": "1.0.0",
+  "description": "eccomerce application built with the MERN Stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Mahammad",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
