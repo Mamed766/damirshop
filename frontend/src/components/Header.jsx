@@ -26,8 +26,7 @@ const Header = () => {
               </Nav.Link>
               <Nav.Link as={Link} to="/login">
                 <FaUser />
-                Login
-                <FaShoppingCart />
+                Sign In
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
