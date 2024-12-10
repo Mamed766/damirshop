@@ -64,6 +64,7 @@ const OrderScreen = () => {
 
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
+      console.log("Payment Details:", details); // Debugging
       try {
         await payOrder({ orderId, details });
         refetch();
