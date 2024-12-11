@@ -1,10 +1,8 @@
 import React from "react";
-import { LinkContainer } from "react-router-bootstrap";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { useGetOrdersQuery } from "../../slices/ordersApiSlice";
 import { Button, Col, Row, Table } from "react-bootstrap";
-import { FaEdit, FaPlus, FaTimes, FaTrash } from "react-icons/fa";
+import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
 import { Link } from "react-router";
 import {
   useGetProductsQuery,
