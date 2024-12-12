@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../slices/usersApiSlice";
 import { logout } from "../slices/authSlice";
-import { LinkContainer } from "react-router-bootstrap";
 import SearchBox from "./SearchBox";
 
 const Header = () => {
