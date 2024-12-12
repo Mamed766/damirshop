@@ -3,16 +3,20 @@ import Message from "../../components/Message";
 import Loader from "../../components/Loader";
 import { Button, Col, Row, Table } from "react-bootstrap";
 import { FaEdit, FaPlus, FaTrash } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useParams } from "react-router";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
   useDeleteProductMutation,
 } from "../../slices/productsApiSlice";
 import { toast } from "react-toastify";
-
+import Paginate from "../../components/Paginate";
 const ProductListScreen = () => {
-  const { data: products, isLoading, error, refetch } = useGetProductsQuery();
+  const { pageNumber } = useParams();
+
+  const { data, isLoading, error, refetch } = useGetProductsQuery({
+    pageNumber,
+  });
 
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
@@ -76,32 +80,34 @@ const ProductListScreen = () => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product) => (
-                <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.name}</td>
-                  <td>${product.price}</td>
-                  <td>{product.category}</td>
-                  <td>{product.brand}</td>
-                  <td>
-                    <Button
-                      as={Link}
-                      to={`/admin/product/${product._id}/edit`}
-                      variant="light"
-                      className="btn-sm mx-2"
-                    >
-                      <FaEdit />
-                    </Button>
-                    <Button
-                      onClick={() => deleteHandler(product._id)}
-                      variant="danger"
-                      className="btn-sm"
-                    >
-                      <FaTrash style={{ color: "white" }} />
-                    </Button>
-                  </td>
-                </tr>
-              ))}
+              {data &&
+                data.products.map((product) => (
+                  <tr key={product._id}>
+                    <td>{product._id}</td>
+                    <td>{product.name}</td>
+                    <td>${product.price}</td>
+                    <td>{product.category}</td>
+                    <td>{product.brand}</td>
+                    <td>
+                      <Button
+                        as={Link}
+                        to={`/admin/product/${product._id}/edit`}
+                        variant="light"
+                        className="btn-sm mx-2"
+                      >
+                        <FaEdit />
+                      </Button>
+                      <Button
+                        onClick={() => deleteHandler(product._id)}
+                        variant="danger"
+                        className="btn-sm"
+                      >
+                        <FaTrash style={{ color: "white" }} />
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              <Paginate pages={data.pages} page={data.page} isAdmin={true} />
             </tbody>
           </Table>
         </>
