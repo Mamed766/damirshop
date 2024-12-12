@@ -238,7 +238,7 @@ const OrderScreen = () => {
                         style={{ marginBottom: "10px" }}
                         onClick={onApproveTest}
                       >
-                        Test Pay Order
+                        TEST PAY BUTTON If paypal not working in your country
                       </Button>
 
                       <div>
