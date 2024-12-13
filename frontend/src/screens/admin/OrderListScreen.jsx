@@ -35,38 +35,40 @@ const OrderListScreen = () => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
-              <tr key={order._id}>
-                <td>{order._id}</td>
-                <td>{order.user ? order.user.name : "Deleted User"}</td>
-                <td>{order.createdAt.substring(0, 10)}</td>
-                <td>${order.totalPrice}</td>
-                <td>
-                  {order.isPaid ? (
-                    order.paidAt.substring(0, 10)
-                  ) : (
-                    <FaTimes style={{ color: "red" }} />
-                  )}
-                </td>
-                <td>
-                  {order.isDelivered ? (
-                    order.deliveredAt.substring(0, 10)
-                  ) : (
-                    <FaTimes style={{ color: "red" }} />
-                  )}
-                </td>
-                <td>
-                  <Button
-                    as={Link}
-                    to={`/order/${order._id}`}
-                    variant="light"
-                    className="btn-sm"
-                  >
-                    Details
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {orders
+              .filter((order) => order.user && order.user.name)
+              .map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.user && order.user.name}</td>
+                  <td>{order.createdAt.substring(0, 10)}</td>
+                  <td>${order.totalPrice}</td>
+                  <td>
+                    {order.isPaid ? (
+                      order.paidAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
+                  </td>
+                  <td>
+                    {order.isDelivered ? (
+                      order.deliveredAt.substring(0, 10)
+                    ) : (
+                      <FaTimes style={{ color: "red" }} />
+                    )}
+                  </td>
+                  <td>
+                    <Button
+                      as={Link}
+                      to={`/order/${order._id}`}
+                      variant="light"
+                      className="btn-sm"
+                    >
+                      Details
+                    </Button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Table>
       )}

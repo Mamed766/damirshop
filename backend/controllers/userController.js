@@ -1,4 +1,5 @@
 import asyncHandler from "../middleware/asyncHandler.js";
+import Order from "../models/orderModel.js";
 import User from "../models/userModel.js";
 import generateToken from "../utils/generateToken.js";
 //@desc Auth user & get token
@@ -149,6 +150,8 @@ const deleteUser = asyncHandler(async (req, res) => {
       res.status(400).json();
       throw new Error("Cannot delete admin user");
     }
+
+    await Order.deleteMany({ user: user._id });
     await User.deleteOne({ _id: user._id });
     res.status(200).json({ message: "User deleted successfully" });
   } else {
