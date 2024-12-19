@@ -159,7 +159,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-//@desc Update users
+//@desc Update userss
 //@route PUT /api/users/:id
 //@access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
